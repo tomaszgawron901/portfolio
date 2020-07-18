@@ -1,33 +1,41 @@
-﻿<div class="navbar-toggler">
-    <button @onclick="ToggleNavMenu">
-        <div class="oi oi-menu"></div>
-    </button>
-</div>
+﻿
+<div class="topbar @NavMenuCssClass">
 
-<div class="@NavMenuCssClass" @onclick="CloseNavMenu">
-    <div class="menu-list">
-        <div class="nav-item">
+    <div class="toggler">
+        <button @onclick="ToggleNavMenu">
+            <div class="oi oi-menu"></div>
+        </button>
+    </div>
+
+    <div class="topbar-list">
+        <div class="nav-item" @onclick="CloseNavMenu">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <div class="oi oi-home" aria-hidden="true"></div> Home
             </NavLink>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" @onclick="CloseNavMenu">
             <NavLink class="nav-link" href="About">
                 <div class="oi oi-person" aria-hidden="true"></div> About
             </NavLink>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" @onclick="CloseNavMenu">
             <NavLink class="nav-link" href="Projects">
                 <div class="oi oi-briefcase" aria-hidden="true"></div> Projects
             </NavLink>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" @onclick="CloseNavMenu">
             <NavLink class="nav-link" href="Contact">
                 <div class="oi oi-envelope-closed" aria-hidden="true"></div> Contact
             </NavLink>
         </div>
+        <div class="nav-item" @onclick="CloseNavMenu">
+                <div class="oi oi-x" aria-hidden="true"></div>
+        </div>
     </div>
+
 </div>
+
+
 
 @code {
     private bool collapseNavMenu = true;
