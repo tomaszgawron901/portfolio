@@ -4,7 +4,7 @@
     </button>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+<div class="@NavMenuCssClass" @onclick="CloseNavMenu">
     <div class="menu-list">
         <div class="nav-item">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
@@ -37,5 +37,11 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+        Console.WriteLine(collapseNavMenu);
+    }
+
+    private void CloseNavMenu()
+    {
+        collapseNavMenu = true;
     }
 }
