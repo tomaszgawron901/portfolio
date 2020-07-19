@@ -28,8 +28,25 @@ app {
     flex: 1;
 }
 
+.site {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+
+}
+
+a {
+    color: var(--normal2);
+    text-decoration-line: none;
+}
+
+.circle { 
+    border-radius: 100%;
+    border: 4px solid var(--normal1);
+}
+
+
 .topbar {
-    background-color: transparent;
     position: fixed;
     width: 100vw;
 }
@@ -98,10 +115,6 @@ app {
         display: block;
     }
 
-.content {
-    padding-top: 1.1rem;
-}
-
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
@@ -127,16 +140,12 @@ app {
 }
 
 @media (min-width: 768px) {
-
-.topbar {
-    background-color: var(--transparent1);
-}
-
     .topbar .topbar-list {
         display: flex;
         flex-direction: row;
         align-items: center;
         height: 70px;
+        background-color: var(--transparent1);
     }
 
     .topbar .nav-item {
