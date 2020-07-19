@@ -1,0 +1,47 @@
+﻿
+#profile-photo {
+    max-width: 400px;
+    min-width: 100px;
+    width: 100%;
+    height: auto;
+    border-radius: 100%;
+    border: 2px solid var(--normal1);
+    box-sizing: border-box;
+}
+
+.page-content {
+    /*padding-top: 100px;*/
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+}
+
+    .page-content .side {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+        .page-content .side.left-side {
+            width: 70%;
+            
+        }
+
+        .page-content .side.right-side {
+            width: 30%;
+        }
+
+@media (max-width: 767.98px) {
+}
+
+@media (min-width: 768px) {
+    .page-content .side.left-side {
+        width: 60%;
+    }
+
+    .page-content .side.right-side {
+        width: 40%;
+    }
+}
