@@ -1,5 +1,6 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 @import url('Home.css');
+@import url('About.css');
 
 :root {
     --background: rgb(0, 0, 0);
@@ -18,10 +19,25 @@ html, body {
     margin: 0px;
 }
 
+#loading-text{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    color: var(--active1);
+}
+
+
+h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 64px;
+}
+
+h3 {
+    color: var(--normal2);
+}
+
 app {
-    width: 100vw;
-    height: 100vh;
-    overflow: auto;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -30,16 +46,9 @@ app {
 .main {
     box-sizing: border-box;
     padding-top: 80px;
+    padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
-    width: 100%;
-    height: 100%;
-
-}
-
-.page {
-    height: 100%;
-    width: 100%;
 }
 
 
@@ -118,6 +127,29 @@ a {
         display: block;
     }
 
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    min-width: 300px;
+}
+
+    .page-content .side {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+        .page-content .side.left-side {
+            width: 100%;
+        }
+
+        .page-content .side.right-side {
+            width: 100%;
+        }
+
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
@@ -176,4 +208,18 @@ a {
 .topbar.collapse .toggler {
     display: none;
 }
+
+
+
+.page-content {
+    flex-direction: row;
+}
+
+    .page-content .side.left-side {
+        width: 60%;
+    }
+
+    .page-content .side.right-side {
+        width: 40%;
+    }
 }
