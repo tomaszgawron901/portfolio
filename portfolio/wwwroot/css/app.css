@@ -121,7 +121,7 @@ app {
     display: flex;
     flex-direction: row;
     width: 100%;
-    border: 1px solid var(--active1);
+    border: 1px solid var(--normal1);
     border-radius: 10px;
     color: black;
     background-color: var(--normal2);
