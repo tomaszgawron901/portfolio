@@ -1,0 +1,35 @@
+﻿.link-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border: 1px solid var(--active1);
+    border-radius: 10px;
+    color: black;
+    background-color: var(--normal2);
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+    .link-box h4 {
+        margin-left: 10px;
+    }
+
+#Contact {
+    display: flex;
+    align-content: center;
+}
+
+#Contact .page-content {
+    max-width: 1100px;
+    align-items: center;
+}
+
+@media (max-width: 767.98px) {
+}
+
+@media (min-width: 768px) {
+}

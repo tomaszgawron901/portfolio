@@ -1,6 +1,8 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 @import url('Home.css');
 @import url('About.css');
+@import url('TopBar.css');
+@import url('Contact.css');
 
 :root {
     --background: rgb(0, 0, 0);
@@ -33,7 +35,14 @@ h1 {
     font-size: 64px;
 }
 
+h2 {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
 h3 {
+    margin-top: 6px;
+    margin-bottom: 6px;
     color: var(--normal2);
 }
 
@@ -43,89 +52,19 @@ app {
     flex-direction: column;
 }
 
-.main {
+.link {
+    color: var(--active2);
+    text-decoration: none;
+}
+
+.page {
+    height: 100vh;
     box-sizing: border-box;
     padding-top: 80px;
     padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
 }
-
-
-a {
-    color: var(--active2);
-    text-decoration: none;
-}
-
-
-.topbar {
-    position: fixed;
-    width: 100vw;
-}
-
-    .topbar .topbar-list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100vw;
-        height: 100vh;
-        background-color: var(--transparent1);
-    }
-
-    .topbar .oi {
-        width: 2rem;
-        font-size: 1.1rem;
-        vertical-align: text-top;
-    }
-
-    .topbar .nav-item {
-        margin-top: 15px;
-        font-size: 1.2rem;
-        display: block;
-    }
-
-        .topbar .nav-item .oi-x {
-            cursor: pointer;
-        }
-
-        .topbar .nav-item a {
-            color: var(--normal2);
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            line-height: 3rem;
-            text-decoration: none;
-        }
-
-            .topbar .nav-item a.active {
-                color: var(--active1);
-            }
-
-    .topbar .toggler {
-        top: 10px;
-        left: 10px;
-        position: relative;
-        display: flex;
-        align-items: center;
-        display: none;
-    }
-
-        .topbar .toggler button {
-            width: 55px;
-            height: 55px;
-            background-color: var(--transparent2);
-            color: var(--active1);
-            border-radius: 5px;
-            border: none;
-        }
-
-    .topbar.collapse .topbar-list {
-        display: none;
-    }
-
-    .topbar.collapse .toggler {
-        display: block;
-    }
 
 
 .page-content {
@@ -175,41 +114,10 @@ a {
 }
 
 @media (min-width: 768px) {
-.main {
+.page {
     padding-left: 100px;
     padding-right: 100px;
 }
-
-.topbar .topbar-list {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 70px;
-    background-color: var(--transparent1);
-}
-
-.topbar .nav-item {
-    margin-top: 0px;
-    margin-left: 35px;
-}
-
-    .topbar .nav-item .oi-x {
-        display: none;
-    }
-
-.topbar .toggler {
-    display: none;
-}
-
-.topbar.collapse .topbar-list {
-    display: flex;
-}
-
-.topbar.collapse .toggler {
-    display: none;
-}
-
-
 
 .page-content {
     flex-direction: row;

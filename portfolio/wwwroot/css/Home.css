@@ -1,4 +1,10 @@
 ﻿
+#Home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 
 #Home .side.left-side {
     width: 100%;
@@ -14,8 +20,4 @@
 }
 
 @media (min-width: 768px) {
-
-    #Home .side.left-side {
-        width: 50%;
-    }
 }
