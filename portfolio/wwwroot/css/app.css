@@ -1,8 +1,5 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
-@import url('Home.css');
-@import url('About.css');
 @import url('TopBar.css');
-@import url('Contact.css');
 
 :root {
     --background: rgb(0, 0, 0);
@@ -14,18 +11,29 @@
     --normal2: rgb(199, 199, 199);
 }
 
+
+#loading-text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    color: var(--active1);
+}
+
+#profile-photo {
+    max-width: 400px;
+    min-width: 200px;
+    width: 100%;
+    height: auto;
+    border-radius: 100%;
+}
+
+
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: var(--normal1);
     background-color: var(--background);
     margin: 0px;
-}
-
-#loading-text{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    color: var(--active1);
 }
 
 
@@ -64,30 +72,71 @@ app {
     padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
+    display: flex;
+    align-items: center;
 }
 
 
 .page-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-content: center;
+    justify-content: center;
+    align-items: center;
     min-width: 300px;
+    max-width: 1100px;
 }
 
-    .page-content .side {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+
+.side-left {
+    width: 100%;
+}
+
+    .side-left.text {
+        padding-right: 20px;
+        border-right: 1px solid var(--normal1);
     }
 
-        .page-content .side.left-side {
-            width: 100%;
-        }
 
-        .page-content .side.right-side {
-            width: 100%;
-        }
+.side-right {
+    width: 100%;
+}
+
+    .side-right.text {
+        padding-left: 20px;
+        border-left: 1px solid var(--normal1);
+    }
+
+
+.side-full {
+    width: 100%;
+}
+
+.side-left.text {
+    padding-right: 20px;
+    border-right: 1px solid var(--normal1);
+}
+
+
+.link-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border: 1px solid var(--active1);
+    border-radius: 10px;
+    color: black;
+    background-color: var(--normal2);
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+    .link-box h4 {
+        margin-left: 10px;
+    }
+
 
 #blazor-error-ui {
     background: lightyellow;
@@ -101,12 +150,12 @@ app {
     z-index: 1000;
 }
 
-#blazor-error-ui .dismiss {
-    cursor: pointer;
-    position: absolute;
-    right: 0.75rem;
-    top: 0.5rem;
-}
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
 
 
 
@@ -114,20 +163,26 @@ app {
 }
 
 @media (min-width: 768px) {
-.page {
-    padding-left: 100px;
-    padding-right: 100px;
-}
+    .page {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
 
-.page-content {
-    flex-direction: row;
-}
+    .page-content {
+        flex-direction: row;
+    }
 
-    .page-content .side.left-side {
+    .side-left {
+        margin-right: 20px;
         width: 60%;
     }
 
-    .page-content .side.right-side {
+    .side-right {
+        margin-left: 20px;
         width: 40%;
+    }
+
+    .side-full {
+        width: 100%;
     }
 }
