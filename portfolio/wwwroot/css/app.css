@@ -20,11 +20,16 @@
 }
 
 #profile-photo {
-    max-width: 400px;
+    max-width: 350px;
     min-width: 200px;
     width: 100%;
     height: auto;
-    border-radius: 100%;
+    border-radius: 50%;
+}
+
+#About .side-right {
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -91,29 +96,14 @@ app {
     width: 100%;
 }
 
-    .side-left.text {
-        padding-right: 20px;
-        border-right: 1px solid var(--normal1);
-    }
-
 
 .side-right {
     width: 100%;
 }
 
-    .side-right.text {
-        padding-left: 20px;
-        border-left: 1px solid var(--normal1);
-    }
-
 
 .side-full {
     width: 100%;
-}
-
-.side-left.text {
-    padding-right: 20px;
-    border-right: 1px solid var(--normal1);
 }
 
 
@@ -160,6 +150,20 @@ app {
 
 
 @media (max-width: 767.98px) {
+    .side-left {
+        padding-bottom: 20px;
+    }
+        .side-left.text {
+        
+            border-bottom: 1px solid var(--normal1);
+        }
+
+    .side-right {
+        padding-top: 20px;
+    }
+        .side-right.text {
+            border-top: 1px solid var(--normal1);
+        }
 }
 
 @media (min-width: 768px) {
@@ -173,14 +177,20 @@ app {
     }
 
     .side-left {
-        margin-right: 20px;
+        padding-right: 20px;
         width: 60%;
     }
+        .side-left.text {
+            border-right: 1px solid var(--normal1);
+        }
 
     .side-right {
-        margin-left: 20px;
+        padding-left: 20px;
         width: 40%;
     }
+        .side-right.text {
+            border-left: 1px solid var(--normal1);
+        }
 
     .side-full {
         width: 100%;
