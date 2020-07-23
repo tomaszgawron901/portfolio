@@ -1,13 +1,13 @@
 ﻿.topbar {
-    position: fixed;
-    width: 100vw;
+    position: sticky;
+    top: 0px;
+    height: 0px;
 }
 
     .topbar .topbar-list {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100vw;
         height: 100vh;
         background-color: var(--transparent1);
     }
@@ -37,6 +37,7 @@
         display: flex;
         align-items: center;
         display: none;
+        width: fit-content;
     }
 
         .topbar .toggler button {

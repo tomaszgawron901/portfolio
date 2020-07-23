@@ -1,14 +1,18 @@
-﻿<CascadingValue Value="this">
-    <TopNavigation @ref="navigation">
-        @foreach (Page page in Pages)
-        {
-            <div class="nav-item @(ActivePage == page ? "active" : "")" @onclick="() => { navigation.CloseNavMenu(); page.ScrollTo(); ActivePage = page; }">
-                <div class="@(page.Icon)" aria-hidden="true"></div> @(page.Label)
-            </div>
-        }
-    </TopNavigation>
-    @ChildContent
-</CascadingValue>
+﻿<div id="m1" class="main" @ref="main">
+    <CascadingValue Value="this">
+        <TopNavigation @ref="navigation">
+            @foreach (Page page in Pages)
+            {
+                <div class="nav-item @(ActivePage == page ? "active" : "")" @onclick="() => { navigation.CloseNavMenu(); page.ScrollTo(); ActivePage = page; }">
+                    <div class="@(page.Icon)" aria-hidden="true"></div> @(page.Label)
+                </div>
+            }
+        </TopNavigation>
+
+        @ChildContent
+    </CascadingValue>
+</div>
+
 
 @code {
     [Parameter]
@@ -18,6 +22,8 @@
     public Page ActivePage { get; set; }
 
     private TopNavigation navigation;
+
+    private ElementReference main;
 
 
     internal void AddPage(Page page)
