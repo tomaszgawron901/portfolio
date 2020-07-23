@@ -1,0 +1,36 @@
+﻿@inject IJSRuntime JsRuntime
+
+<div class="page" @ref="self">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public string Icon { get; set; }
+
+    [Parameter]
+    public string Label { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [CascadingParameter]
+    public TabControl Parent { get; set; }
+
+    private ElementReference self;
+
+    public async void ScrollTo()
+    {
+        await JsRuntime.InvokeVoidAsync("scrollToElement", self);
+    }
+
+    protected override void OnInitialized()
+    {
+        if (Parent is null)
+        {
+            throw new ArgumentNullException("Page must exist within a TabControl");
+        }
+        Parent.AddPage(this);
+        base.OnInitialized();
+    }
+}

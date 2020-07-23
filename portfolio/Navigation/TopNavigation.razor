@@ -1,0 +1,38 @@
+﻿<div class="topbar @NavMenuCssClass">
+
+    <div class="toggler">
+        <button @onclick="ToggleNavMenu">
+            <div class="oi oi-menu"></div>
+        </button>
+    </div>
+
+    <div class="topbar-list">
+        @ChildContent
+        <div class="nav-item" @onclick="CloseNavMenu">
+            <div class="oi oi-x" aria-hidden="true"></div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    public void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+        Console.WriteLine(collapseNavMenu);
+    }
+
+    public void CloseNavMenu()
+    {
+        collapseNavMenu = true;
+    }
+}

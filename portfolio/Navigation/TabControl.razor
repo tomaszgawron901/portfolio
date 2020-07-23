@@ -1,0 +1,33 @@
+﻿<CascadingValue Value="this">
+    <TopNavigation @ref="navigation">
+        @foreach (Page page in Pages)
+        {
+            <div class="nav-item @(ActivePage == page ? "active" : "")" @onclick="() => { navigation.CloseNavMenu(); page.ScrollTo(); ActivePage = page; }">
+                <div class="@(page.Icon)" aria-hidden="true"></div> @(page.Label)
+            </div>
+        }
+    </TopNavigation>
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    protected List<Page> Pages = new List<Page>();
+    public Page ActivePage { get; set; }
+
+    private TopNavigation navigation;
+
+
+    internal void AddPage(Page page)
+    {
+        Pages.Add(page);
+        if (Pages.Count == 1)
+        {
+            ActivePage = page;
+        }
+        StateHasChanged();
+    }
+
+}
