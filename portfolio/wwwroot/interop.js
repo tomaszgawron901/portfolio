@@ -25,25 +25,29 @@ function isInView(element) {
     return false;
 }
 
-function initializeTabControl(ref) {
+function getActive(ref) {
+    return ref.activePage;
+}
+
+function initializeTabControl(ref, control) {
     ref.pages = [];
+    ref.activePage = -1;
     ref.onscroll = () => {
         let outp = -1;
         let scrollPosition = ref.clientHeight / 2 + ref.scrollTop;
         for (let i = 0; i < ref.pages.length; i++) {
-            if (scrollPosition > ref.pages[i].offsetTop && scrollPosition <= ref.pages[i].offsetTop + ref.pages[i].offsetHeight) {
+            if (scrollPosition <= ref.pages[i].offsetTop + ref.pages[i].offsetHeight) {
                 outp = i;
                 break;
             }
         }
-        console.log(outp);
+        if (ref.activePage != outp) {
+            ref.activePage = outp;
+            control.invokeMethodAsync("SetActivePage", ref.activePage);
+        }
     }
-    console.log(ref);
-    console.log(ref.pages);
-    console.log(ref.onscroll);
 }
 
 function addPage(ref, index, page) {
     ref.pages[index] = page;
-    console.log(ref.pages)
 }

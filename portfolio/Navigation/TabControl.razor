@@ -1,11 +1,11 @@
 ﻿@inject IJSRuntime JsRuntime
 
-<div @onscroll="scrolled" class="main" @ref="self">
+<div class="main" @ref="self">
     <CascadingValue Value="this">
         <TopNavigation @ref="navigation">
             @foreach (Page page in Pages)
             {
-                <div class="nav-item @(ActivePage == page ? "active" : "")" @onclick="() => { navigation.CloseNavMenu(); page.ScrollTo(); ActivePage = page; }">
+                <div class="nav-item @(ActivePage == page ? "active" : "")" @onclick="() => { navigation.CloseNavMenu(); page.ScrollTo(); }">
                     <div class="@(page.Icon)" aria-hidden="true"></div> @(page.Label)
                 </div>
             }
@@ -25,17 +25,6 @@
     private TopNavigation navigation;
     private ElementReference self;
 
-    private async Task scrolled()
-    {
-        foreach(Page page in Pages)
-        {
-            if (await page.IsInView())
-            {
-                ActivePage = page;
-                break;
-            }
-        }
-    }
 
     internal void AddPage(Page page)
     {
@@ -47,17 +36,28 @@
         StateHasChanged();
     }
 
+    [JSInvokable]
+    public void SetActivePage(int index)
+    {
+        if(index >= 0 && index < Pages.Count)
+        {
+            ActivePage = Pages[index];
+        }
+        StateHasChanged();
+    }
+
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            //await InitializeJS();
+            await InitializeJS();
         }
     }
 
     private async Task InitializeJS()
     {
-        await JsRuntime.InvokeVoidAsync("initializeTabControl", self);
+        await JsRuntime.InvokeVoidAsync("initializeTabControl", self, DotNetObjectReference.Create(this));
         for (int i = 0; i < Pages.Count; i++)
         {
             await JsRuntime.InvokeVoidAsync("addPage", self, i, Pages[i].self);
