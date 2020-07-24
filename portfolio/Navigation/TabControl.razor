@@ -1,4 +1,6 @@
-﻿<div id="m1" class="main" @ref="main">
+﻿@inject IJSRuntime JsRuntime
+
+<div @onscroll="scrolled" class="main" @ref="self">
     <CascadingValue Value="this">
         <TopNavigation @ref="navigation">
             @foreach (Page page in Pages)
@@ -8,7 +10,6 @@
                 </div>
             }
         </TopNavigation>
-
         @ChildContent
     </CascadingValue>
 </div>
@@ -22,9 +23,19 @@
     public Page ActivePage { get; set; }
 
     private TopNavigation navigation;
+    private ElementReference self;
 
-    private ElementReference main;
-
+    private async Task scrolled()
+    {
+        foreach(Page page in Pages)
+        {
+            if (await page.IsInView())
+            {
+                ActivePage = page;
+                break;
+            }
+        }
+    }
 
     internal void AddPage(Page page)
     {
@@ -34,6 +45,23 @@
             ActivePage = page;
         }
         StateHasChanged();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            //await InitializeJS();
+        }
+    }
+
+    private async Task InitializeJS()
+    {
+        await JsRuntime.InvokeVoidAsync("initializeTabControl", self);
+        for (int i = 0; i < Pages.Count; i++)
+        {
+            await JsRuntime.InvokeVoidAsync("addPage", self, i, Pages[i].self);
+        }
     }
 
 }

@@ -17,11 +17,16 @@
     [CascadingParameter]
     public TabControl Parent { get; set; }
 
-    private ElementReference self;
+    public ElementReference self;
 
     public async void ScrollTo()
     {
         await JsRuntime.InvokeVoidAsync("scrollToElement", self);
+    }
+
+    public async Task<bool> IsInView()
+    {
+        return await JsRuntime.InvokeAsync<bool>("isInView", self);
     }
 
     protected override void OnInitialized()

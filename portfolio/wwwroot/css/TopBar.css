@@ -37,7 +37,7 @@
         display: flex;
         align-items: center;
         display: none;
-        width: fit-content;
+        width: 55px;
     }
 
         .topbar .toggler button {
