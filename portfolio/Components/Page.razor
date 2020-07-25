@@ -19,6 +19,11 @@
 
     public ElementReference self;
 
+    public async void CenterIt()
+    {
+        await JsRuntime.InvokeVoidAsync("centerElement", self);
+    }
+
     public async void ScrollTo()
     {
         await JsRuntime.InvokeVoidAsync("scrollToElement", self);

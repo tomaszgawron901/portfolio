@@ -56,7 +56,7 @@
             await Task.Delay(delay);
             timeSinceLastScroll = (DateTime.Now - this.lastScroll).TotalMilliseconds;
         }
-        this.ActivePage.ScrollTo();
+        this.ActivePage.CenterIt();
         this.lastScrollTask = null;
     }
 
