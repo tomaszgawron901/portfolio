@@ -1,0 +1,75 @@
+﻿<div class="smallWindow">
+    <div class="interior">
+        <div class="Header" @onclick="Open">
+            @Header
+        </div>
+
+        <div class="Content">
+            <h2 @onclick="Open" class="Title">
+                <i class="fas fa-ellipsis-v" style="margin-right: 6px"></i>
+                @Title
+            </h2>
+            @Content
+        </div>
+
+        <div class="Reveal @RevealCssClass">
+            <h2 @onclick="Close" class="Title">
+                <i class="fas fa-times" style="float: right;"></i>
+                Tools
+            </h2>
+            @Reveal
+        <div class="Reveal-bottom">
+            @if (Web != null)
+            {
+                <a href="@Web" target="_blank">
+                    <i class="fas fa-external-link-alt fa-2x"></i>
+                </a>
+
+            }
+
+            @if (Git != null)
+            {
+                <a href="@Git" target="_blank">
+                    <i class="fas fa-book fa-2x"></i>
+                </a>
+            }
+        </div>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment Content { get; set; }
+
+    [Parameter]
+    public RenderFragment Header { get; set; }
+
+    [Parameter]
+    public RenderFragment Reveal { get; set; }
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public string Web { get; set; }
+
+    [Parameter]
+    public string Git { get; set; }
+
+    private bool collapse = true;
+
+    private string RevealCssClass => collapse ? "collapse" : null;
+
+    public void Open()
+    {
+        collapse = false;
+    }
+
+    public void Close()
+    {
+        collapse = true;
+    }
+
+}

@@ -1,5 +1,6 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 @import url('TopBar.css');
+@import url('SmallWindow.css');
 
 :root {
     --background: rgb(0, 0, 0);
@@ -9,6 +10,7 @@
     --active2: rgb(219, 94, 94);
     --normal1: rgb(255, 255, 255);
     --normal2: rgb(199, 199, 199);
+    --normal3: rgb(45, 45, 45);
 }
 
 
@@ -42,6 +44,11 @@ html, body {
     position: relative;
     top: 0px;
     left: 0px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 
@@ -84,6 +91,12 @@ app {
     align-items: center;
 }
 
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
 
 .page-content {
     display: flex;

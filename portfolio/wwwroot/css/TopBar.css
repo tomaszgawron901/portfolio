@@ -1,5 +1,6 @@
 ﻿.topbar {
     position: sticky;
+    z-index: 1000;
     top: 0px;
     height: 0px;
 }
@@ -38,12 +39,13 @@
         align-items: center;
         display: none;
         width: 55px;
+        cursor: pointer;
     }
 
         .topbar .toggler button {
             width: 55px;
             height: 55px;
-            background-color: var(--transparent2);
+            background-color: var(--normal3);
             color: var(--active1);
             border-radius: 5px;
             border: none;

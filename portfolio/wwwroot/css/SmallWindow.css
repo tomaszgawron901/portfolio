@@ -1,0 +1,94 @@
+﻿.smallWindow {
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 180px;
+    color: black;
+}
+
+    .smallWindow .interior {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 2px;
+        background-color: var(--normal1);
+        overflow: hidden;
+    }
+
+    .smallWindow .Header {
+        height: 280px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+        .smallWindow .Header img {
+            top: 0px;
+            left: 0px;
+            width: 100%;
+        }
+        
+
+    .smallWindow .Content {
+        height: 100px;
+        padding: 10px;
+    }
+
+        .smallWindow .Content .Title {
+            color: var(--active1);
+            cursor: pointer;
+        }
+
+    .smallWindow .Reveal {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: inherit;
+        padding: 10px;
+        box-sizing: border-box;
+        transform: translateY(-100%);
+        transition: transform 0.3s;
+    }
+
+        .smallWindow .Reveal.collapse{
+            transform: translateY(0px)
+        }
+
+        .smallWindow .Reveal .Title {
+            color: var(--normal3);
+            cursor: pointer;
+        }
+
+        .smallWindow .Reveal .Reveal-bottom {
+            width: 100%;
+            height: 70px;
+            position: absolute;
+            padding: 10px;
+            bottom: 0px;
+            left: 0px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            box-sizing: border-box;
+            border-top: 1px solid var(--normal2);
+        }
+
+@media (min-width: 550px) {
+    .smallWindow {
+        padding-left: 8px;
+        padding-right: 8px;
+        width: 50%;
+    }
+}
+
+@media (min-width: 1000px) {
+    .smallWindow {
+        padding-left: 8px;
+        padding-right: 8px;
+        width: 33.33333%;
+        max-width: 500px;
+    }
+}
+
+
