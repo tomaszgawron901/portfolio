@@ -6,8 +6,8 @@
     --background: rgb(0, 0, 0);
     --transparent1: rgba(0, 0, 0, 0.9);
     --transparent2: rgba(255, 255, 255, 0.1);
-    --active1: rgb(255, 103, 103);
-    --active2: rgb(219, 94, 94);
+    --active1: rgb(255, 180, 0);
+    --active2: rgb(255, 148, 0);
     --normal1: rgb(255, 255, 255);
     --normal2: rgb(199, 199, 199);
     --normal3: rgb(45, 45, 45);
@@ -78,6 +78,7 @@ app {
 .link {
     color: var(--active2);
     text-decoration: none;
+    cursor: pointer;
 }
 
 .page {
@@ -131,10 +132,8 @@ app {
     display: flex;
     flex-direction: row;
     width: 100%;
-    border: 1px solid var(--normal1);
     border-radius: 10px;
-    color: black;
-    background-color: var(--normal2);
+    color: var(--normal1);
     align-items: center;
     margin-top: 10px;
     margin-bottom: 10px;
