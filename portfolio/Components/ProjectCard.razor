@@ -21,17 +21,16 @@
         <div class="Reveal-bottom">
             @if (Web != null)
             {
-                <a href="@Web" target="_blank">
+                <IconLink CssClass="item" Link="@Web" Label="View Online">
                     <i class="fas fa-external-link-alt fa-2x"></i>
-                </a>
-
+                </IconLink>
             }
 
             @if (Git != null)
             {
-                <a href="@Git" target="_blank">
+                <IconLink CssClass="item" Link="@Git" Label="View Sorce">
                     <i class="fas fa-book fa-2x"></i>
-                </a>
+                </IconLink>
             }
         </div>
         </div>

@@ -148,6 +148,36 @@ app {
     }
 
 
+.tooltip {
+    position: relative;
+}
+    .tooltip .tooltip-text {
+        visibility: hidden;
+        position: absolute;
+        width: 100px;
+        font-size: 15px;
+        background-color: var(--normal3);
+        color: var(--normal1);
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity .2s;
+    }
+
+    .tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .tooltip .tooltip-top {
+        bottom: 125%;
+        left: 50%;
+        margin-left: -50px;
+    }
+
+
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;

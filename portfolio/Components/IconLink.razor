@@ -1,10 +1,14 @@
-﻿<a href="@Link">
-    <i class="@Icon"></i>
+﻿<a class="@CssClass tooltip" href="@Link" target="_blank">
+    @ChildContent
+    <span class="tooltip-text tooltip-top">@Label</span>
 </a>
 
 @code {
     [Parameter]
-    public string Icon { get; set; }
+    public string CssClass { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
 
     [Parameter]
     public string Link { get; set; }
