@@ -5,7 +5,7 @@
     box-sizing: border-box;
     width: 100%;
     min-width: 180px;
-    color: black;
+    color: var(--normal2);
 }
 
     .smallWindow .interior {
@@ -13,7 +13,7 @@
         width: 100%;
         height: 100%;
         border-radius: 2px;
-        background-color: var(--active2);
+        background-color: var(--normal3);
         overflow: hidden;
     }
 
@@ -35,7 +35,7 @@
     }
 
         .smallWindow .Content .Title {
-            color: var(--narmal3);
+            color: var(--active1);
             cursor: pointer;
         }
 
@@ -55,7 +55,7 @@
         }
 
         .smallWindow .Reveal .Title {
-            color: var(--normal3);
+            color: var(--normal1);
             cursor: pointer;
         }
 
