@@ -14,10 +14,18 @@
 }
 
 
-#loading-text {
+.centered-container {
     position: fixed;
+    width: 0px;
+    height: 0px;
     top: 50%;
     left: 50%;
+}
+
+#loading-text {
+    position: relative;
+    width: 100px;
+    left: -50px;
     color: var(--active1);
 }
 
