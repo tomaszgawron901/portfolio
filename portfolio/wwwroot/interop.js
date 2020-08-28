@@ -54,3 +54,7 @@ function isInView(element) {
     }
     return false;
 }
+
+function appendBackgroundApp(element) {
+    new BackgroundApp(element);
+}

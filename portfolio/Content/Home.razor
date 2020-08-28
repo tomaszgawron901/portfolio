@@ -1,6 +1,8 @@
-﻿
+﻿@inject IJSRuntime JsRuntime
+
 <Page Label="Home" Icon="oi oi-home">
-    <div class="page-content">
+    <div class="top-leftContainer" @ref="backgroundContainer"></div>
+    <div class="page-content" style="position: relative;">
         <div class="side-full">
             <h1>Hello, I'm Tomek.</h1>
             <h2>full-stack application developer.</h2>
@@ -12,4 +14,14 @@
 @code {
     [CascadingParameter]
     public TabControl Parent { get; set; }
+
+    private ElementReference backgroundContainer;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JsRuntime.InvokeVoidAsync("appendBackgroundApp", backgroundContainer);
+        }
+    }
 }

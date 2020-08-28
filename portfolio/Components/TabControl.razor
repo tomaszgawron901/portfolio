@@ -27,7 +27,7 @@
 
     private async Task Scrolled()
     {
-        if(!await ActivePage.IsInView())
+        if (!await ActivePage.IsInView())
         {
             foreach (Page page in Pages)
             {
@@ -37,7 +37,7 @@
                 }
             }
         }
-        if(lastScrollTask is null)
+        if (lastScrollTask is null)
         {
             lastScrollTask = Task.Run(this.LastScrollInterval);
         }
@@ -75,5 +75,4 @@
     {
         Pages[index].ScrollTo();
     }
-
 }
