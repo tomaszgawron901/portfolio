@@ -1,3 +1,14 @@
+class ListRoulette extends Array {
+    constructor(...items) {
+        super(...items);
+    }
+    get() {
+        const tmp = this.shift();
+        this.push(tmp);
+        return tmp;
+    }
+}
+
 class Circle {
     constructor(radius, maxRadius, x, y) {
         this.radius = radius;
@@ -74,10 +85,8 @@ class Canvas {
         this.element = document.createElement('CANVAS');
         this.setSize(width, height);
         this.ctx = this.element.getContext('2d');
-        this.gradient = this.ctx.createLinearGradient(0, 0, this.diagonal, this.diagonal);
-        this.gradient.addColorStop(0.0, '#ff5500');
-        this.gradient.addColorStop(0.5, "#ffee00");
-        this.gradient.addColorStop(1.0, "#ff5500");
+        //this.colors = new ListRoulette("#fc0303", "#fc5603", "#fca903", "#fce703", "#b1fc03", "#fce703", "#fca903", "#fc5603");
+        this.colors = new ListRoulette("#ff0000", "#ff8c00", "#fffb00", "#a6ff00", "#00ff04", "#00ff80", "#00eaff", "#00a6ff", "#0026ff", "#7300ff", "#ff00f2", "#ff0062");
         this.groups = new Array();
         this.step = step;
         this.wavelenght = wavelenght;
@@ -116,7 +125,7 @@ class Canvas {
             return;
         }
         let newCircleGroup = new CircleGroup(newCircle, this.width, this.height);
-        newCircleGroup.ctx.strokeStyle = this.gradient;
+        newCircleGroup.ctx.strokeStyle = this.colors.get();
         newCircleGroup.ctx.lineWidth = 5;
         this.groups.push(newCircleGroup);
     }
@@ -187,7 +196,7 @@ class BackgroundApp {
     start() {
         this.intervals.push(setInterval(() => {
             this.canvas.addCircle(Math.floor((randn_bm() * this.canvas.width)), Math.floor((randn_bm() * this.canvas.height)));
-        }, 2333));
+        }, 1333));
         this.intervals.push(setInterval(() => {
             this.canvas.addCircle(Math.floor((randn_bm() * this.canvas.width)), Math.floor((randn_bm() * this.canvas.height)));
         }, 8888));

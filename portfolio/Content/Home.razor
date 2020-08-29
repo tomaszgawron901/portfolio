@@ -16,12 +16,17 @@
     public TabControl Parent { get; set; }
 
     private ElementReference backgroundContainer;
+    private JsRuntimeObjectRef backgroundApp;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await JsRuntime.InvokeVoidAsync("appendBackgroundApp", backgroundContainer);
+            backgroundApp = await JsRuntime.InvokeAsync<JsRuntimeObjectRef>("appendBackgroundApp", backgroundContainer);
+            backgroundApp.JsRuntime = JsRuntime;
+            Console.WriteLine(backgroundApp.JsObjectRefId);
+            await JsRuntime.InvokeVoidAsync("stopBackground", backgroundApp);
+            
         }
     }
 }

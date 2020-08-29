@@ -29,11 +29,13 @@
     {
         if (!await ActivePage.IsInView())
         {
+            ActivePage.Deactivate();
             foreach (Page page in Pages)
             {
                 if (await page.IsInView())
                 {
                     ActivePage = page;
+                    ActivePage.Activate();
                 }
             }
         }

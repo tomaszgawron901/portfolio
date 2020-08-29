@@ -19,6 +19,14 @@
 
     public ElementReference self;
 
+
+    public bool Activated { get; protected set; }
+
+    public virtual void Activate() { }
+
+    public virtual void Deactivate() { }
+
+
     public async void CenterIt()
     {
         await JsRuntime.InvokeVoidAsync("centerElement", self);

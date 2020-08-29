@@ -56,5 +56,42 @@ function isInView(element) {
 }
 
 function appendBackgroundApp(element) {
-    new BackgroundApp(element);
+    return storeObjectRef(new BackgroundApp(element)); 
+}
+
+function stopBackground(backgroundApp) {
+    backgroundApp.stop();
+    console.log("stoped");
+}
+
+
+DotNet.attachReviver(function (key, value) {
+    if (value &&
+        typeof value === 'object' &&
+        value.hasOwnProperty(jsRefKey) &&
+        typeof value[jsRefKey] === 'number') {
+
+        var id = value[jsRefKey];
+        if (!(id in jsObjectRefs)) {
+            throw new Error("This JS object reference does not exists : " + id);
+        }
+        const instance = jsObjectRefs[id];
+        return instance;
+    } else {
+        return value;
+    }
+});
+
+var jsObjectRefs = {};
+var jsObjectRefId = 0;
+const jsRefKey = '__jsObjectRefId';
+function storeObjectRef(obj) {
+    var id = jsObjectRefId++;
+    jsObjectRefs[id] = obj;
+    var jsRef = {};
+    jsRef[jsRefKey] = id;
+    return jsRef;
+}
+function deleteObjectRef(ref) {
+    delete jsObjectRefs[ref];
 }
