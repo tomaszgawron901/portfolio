@@ -1,6 +1,7 @@
 ﻿@inject IJSRuntime JsRuntime
+@inherits Page
 
-<Page Label="Home" Icon="oi oi-home">
+<div class="page" @ref="self">
     <div class="top-leftContainer" @ref="backgroundContainer"></div>
     <div class="page-content" style="position: relative;">
         <div class="side-full">
@@ -9,14 +10,17 @@
             <span class="link" @onclick="() => { Parent.ScrollTo(1); }">Learn more ></span>
         </div>
     </div>
-</Page>
+</div>
 
 @code {
-    [CascadingParameter]
-    public TabControl Parent { get; set; }
-
     private ElementReference backgroundContainer;
     private JsRuntimeObjectRef backgroundApp;
+
+    protected override void OnParametersSet()
+    {
+        Icon = "oi oi-home";
+        Label = "Home";
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -24,9 +28,25 @@
         {
             backgroundApp = await JsRuntime.InvokeAsync<JsRuntimeObjectRef>("appendBackgroundApp", backgroundContainer);
             backgroundApp.JsRuntime = JsRuntime;
-            Console.WriteLine(backgroundApp.JsObjectRefId);
-            await JsRuntime.InvokeVoidAsync("stopBackground", backgroundApp);
-            
         }
     }
+
+    private bool activated { get; set; } = true;
+
+    public async override void Activate()
+    {
+        if(activated) { return; }
+        await JsRuntime.InvokeVoidAsync("startBackground", backgroundApp);
+        activated = true;
+    }
+
+    public async override void Deactivate()
+    {
+        if (activated)
+        {
+            await JsRuntime.InvokeVoidAsync("stopBackground", backgroundApp);
+            activated = false;
+        }
+    }
+
 }

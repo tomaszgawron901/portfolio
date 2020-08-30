@@ -185,6 +185,8 @@ function randn_bm() {
 }
 class BackgroundApp {
     constructor(container) {
+        this.started = false;
+
         this.container = container;
         document.onvisibilitychange = () => { this.onVisibilityChange(); };
         window.onresize = () => { this.onWindowsResize(); };
@@ -194,6 +196,17 @@ class BackgroundApp {
         this.start();
     }
     start() {
+        this.started = true;
+        if (document.visibilityState == "visible") {
+            this.startIntervals();
+        }
+    }
+    stop() {
+        this.clearIntervals();
+        this.started = false;
+    }
+
+    startIntervals() {
         this.intervals.push(setInterval(() => {
             this.canvas.addCircle(Math.floor((randn_bm() * this.canvas.width)), Math.floor((randn_bm() * this.canvas.height)));
         }, 1333));
@@ -205,7 +218,7 @@ class BackgroundApp {
         }, 6666));
         this.canvas.startDrawing();
     }
-    stop() {
+    clearIntervals() {
         while (this.intervals.length > 0) {
             clearInterval(this.intervals.pop());
         }
@@ -213,10 +226,12 @@ class BackgroundApp {
     }
     onVisibilityChange() {
         if (document.visibilityState == "visible") {
-            this.start();
+            if (this.started) {
+                this.startIntervals();
+            }
         }
         else {
-            this.stop();
+            this.clearIntervals();
         }
     }
     onWindowsResize() {

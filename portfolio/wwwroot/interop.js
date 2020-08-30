@@ -45,11 +45,27 @@ function centerElement(element) {
 
 }
 
-function isInView(element) {
+function isInCenter(element) {
     let parent = element.offsetParent
     let scrollPosition = parent.clientHeight / 2 + parent.scrollTop;
+    const elementTopPosition = element.offsetTop;
+    const elementBottomPosition = element.offsetTop + element.offsetHeight;
 
-    if ( scrollPosition <= element.offsetTop + element.offsetHeight && scrollPosition > element.offsetTop) {
+    if (scrollPosition <= elementBottomPosition && scrollPosition > elementTopPosition) {
+        return true;
+    }
+    return false;
+}
+
+function isInView(element) {
+    const parent = element.offsetParent;
+
+    const scrollTopPosition = parent.scrollTop;
+    const scrollBottomPosition = parent.clientHeight + parent.scrollTop;
+    const elementTopPosition = element.offsetTop;
+    const elementBottomPosition = element.offsetTop + element.offsetHeight;
+
+    if (scrollTopPosition < elementBottomPosition && scrollBottomPosition > elementTopPosition) {
         return true;
     }
     return false;
@@ -61,7 +77,10 @@ function appendBackgroundApp(element) {
 
 function stopBackground(backgroundApp) {
     backgroundApp.stop();
-    console.log("stoped");
+}
+
+function startBackground(backgroundApp) {
+    backgroundApp.start();
 }
 
 

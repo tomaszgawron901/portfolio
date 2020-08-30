@@ -1,6 +1,6 @@
 ﻿@inject IJSRuntime JsRuntime
 
-<div class="page" @ref="self">
+<div uiactions="" class="page" @ref="self">
     @ChildContent
 </div>
 
@@ -20,8 +20,6 @@
     public ElementReference self;
 
 
-    public bool Activated { get; protected set; }
-
     public virtual void Activate() { }
 
     public virtual void Deactivate() { }
@@ -40,6 +38,11 @@
     public async Task<bool> IsInView()
     {
         return await JsRuntime.InvokeAsync<bool>("isInView", self);
+    }
+
+    public async Task<bool> IsInCenter()
+    {
+        return await JsRuntime.InvokeAsync<bool>("isInCenter", self);
     }
 
     protected override void OnInitialized()
