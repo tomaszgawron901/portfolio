@@ -1,6 +1,9 @@
 ﻿@inject IJSRuntime JsRuntime
 
-<div uiactions="" class="page" @ref="self">
+<div class="page" style="display: flex; flex-direction: column;" @ref="self">
+    <div class="pageHeader">
+        @Label.ToUpper()
+    </div>
     @ChildContent
 </div>
 

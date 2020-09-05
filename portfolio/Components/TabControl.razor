@@ -1,5 +1,5 @@
 ﻿@using System;
-@using System.Threading
+@inject IJSRuntime JsRuntime
 
 <div @onscroll="Scrolled" class="main" @ref="self">
     <CascadingValue Value="this">
@@ -32,11 +32,12 @@
 
     private async Task Scrolled()
     {
-        foreach(Page page in Pages)
+
+        foreach (Page page in Pages)
         {
             if (await page.IsInView())
             {
-                if(await page.IsInCenter())
+                if (await page.IsInCenter())
                 {
                     ActivePage = page;
                 }

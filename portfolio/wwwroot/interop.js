@@ -71,6 +71,12 @@ function isInView(element) {
     return false;
 }
 
+
+//function getElementProperty(element, property) {
+//    return element[property];
+//}
+
+
 function appendBackgroundApp(element) {
     return storeObjectRef(new BackgroundApp(element)); 
 }
