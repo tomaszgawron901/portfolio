@@ -235,8 +235,10 @@ class BackgroundApp {
         }
     }
     onWindowsResize() {
-        this.stop();
+        this.clearIntervals();
         this.canvas.resizeCanvas(this.container.clientWidth, this.container.clientHeight);
-        this.start();
+        if (this.started) {
+            this.startIntervals();
+        }
     }
 }
