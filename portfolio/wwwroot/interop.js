@@ -78,7 +78,7 @@ function isInView(element) {
 
 
 function appendBackgroundApp(element) {
-    return storeObjectRef(new BackgroundApp(element)); 
+    return storeObjectRef(new BackgroundApp(element));
 }
 
 function stopBackground(backgroundApp) {
