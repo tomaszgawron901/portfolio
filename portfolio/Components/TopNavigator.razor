@@ -14,24 +14,3 @@
     </div>
 
 </div>
-
-
-
-@code {
-    [Parameter]
-    public RenderFragment ChildContent { get; set; }
-
-    private bool collapseNavMenu = true;
-
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    public void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-
-    public void CloseNavMenu()
-    {
-        collapseNavMenu = true;
-    }
-}

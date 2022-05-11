@@ -1,0 +1,25 @@
+﻿<Page Label="Toolset">
+    <div class="page">
+        <div class="page-content">
+            <h1 id="toolset-title">
+                @Title
+            </h1>
+            <div class="skill-container">
+                @foreach (var toolGroup in ToolGroups) {
+                    @if (toolGroup is not null) {
+                        <div class="skill-column">
+                            <h2>@toolGroup.GroupName</h2>
+                            @if(toolGroup.Tools is not null) {
+                                @foreach(var tool in toolGroup.Tools) {
+                                    @if(tool is not null) {
+                                        <PercentageBar Label="@tool.Name" Percentage="@tool.Percentage"/>
+                                    }
+                                }
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</Page>

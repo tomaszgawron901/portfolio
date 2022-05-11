@@ -1,0 +1,85 @@
+﻿.topbar {
+    position: sticky;
+    z-index: 1000;
+    top: 0px;
+    height: 0px;
+}
+
+.topbar .topbar-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--background);
+    border-bottom: 1px solid var(--border_black);
+}
+
+.topbar .oi {
+    width: 2rem;
+    font-size: 1.1rem;
+    vertical-align: text-top;
+}
+
+
+.topbar .toggler {
+    top: 10px;
+    left: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    display: none;
+    width: 55px;
+    cursor: pointer;
+}
+
+.topbar .toggler button {
+    width: 55px;
+    height: 55px;
+    background-color: var(--normal3);
+    color: var(--active1);
+    border-radius: 5px;
+    border: none;
+}
+
+.topbar.collapse .topbar-list {
+    display: none;
+}
+
+.topbar.collapse .toggler {
+    display: block;
+}
+
+
+
+@media (max-width: 767.98px) {
+}
+
+@media (min-width: 768px) {
+    .topbar .topbar-list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 40px;
+    }
+
+    .topbar .nav-item {
+        margin-top: 0px;
+        margin-left: 40px;
+    }
+
+    .topbar .nav-item .oi-x {
+        display: none;
+    }
+
+    .topbar .toggler {
+        display: none;
+    }
+
+    .topbar.collapse .topbar-list {
+        display: flex;
+    }
+
+    .topbar.collapse .toggler {
+        display: none;
+    }
+}

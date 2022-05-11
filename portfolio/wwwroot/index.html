@@ -7,18 +7,19 @@
     <title>Tomasz Gawron - full-stack application developer.</title>
     <base href="/" />
     <link href="css/app.css" rel="stylesheet" />
+    <link href="portfolio.styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/009992799b.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <app>
+    <div id="app">
         <div class="centered-container">
             <h4 id="loading-text">
                 <i class="fas fa-fan fa-spin"></i>
                 Loading...
             </h4>
         </div>
-    </app>
+    </div>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
@@ -26,8 +27,23 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
-    <script src="/backgroundApp.js"></script>
-    <script src="/interop.js"></script>
+    <script>
+        Blazor.registerCustomEventType('customscroll', {
+            browserEventName: 'scroll',
+            createEventArgs: event => {
+                return {
+                    scrollHeight: event.target.scrollHeight,
+                    scrollLeft: event.target.scrollLeft,
+                    scrollTop: event.target.scrollTop,
+                    scrollWidth: event.target.scrollWidth,
+                    scrollTopMax: event.target.scrollHeight - event.target.clientHeight,
+                    scrollLeftMax: event.target.scrollWidth - event.target.clientWidth,
+                };
+            }
+        });
+    </script>
+    <script src="backgroundApp.js" type="module"></script>
+    <script src="pageInteractionInterop.js" type="module"></script>
 </body>
 
 </html>

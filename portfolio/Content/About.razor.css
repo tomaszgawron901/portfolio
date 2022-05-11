@@ -1,0 +1,21 @@
+﻿.page {
+    justify-content: center;
+}
+
+#about-me-title {
+    width: max-content;
+    background: rgb(32,48,126);
+    background: linear-gradient(90deg, rgba(32,48,126,0.896796218487395) 0%, rgba(176,51,76,1) 100%);
+    padding: 10px;
+    padding-right: 50px;
+    clip-path: polygon(0% 0%, 100% 0%, calc(100% - 20px) 50%, 100% 100%, 0 100%, 0px 100%);
+}
+
+
+#profile-photo {
+    max-width: 300px;
+    min-width: 200px;
+    width: 100%;
+    height: auto;
+    border-radius: 10%;
+}

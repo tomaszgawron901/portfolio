@@ -1,10 +1,10 @@
 ﻿.smallWindow {
     display: block;
-    padding-top: 10px;
-    padding-bottom: 40px;
     box-sizing: border-box;
-    width: 100%;
-    min-width: 180px;
+    min-width: 200px;
+    padding: 10px;
+    width: 33.33333%;
+    max-width: 250px;
     color: var(--normal2);
 }
 
@@ -18,16 +18,17 @@
     }
 
     .smallWindow .Header {
-        height: 280px;
+        height: 180px;
         overflow: hidden;
         cursor: pointer;
     }
+
         .smallWindow .Header img {
             top: 0px;
             left: 0px;
             width: 100%;
         }
-        
+
 
     .smallWindow .Content {
         height: 100px;
@@ -50,7 +51,7 @@
         transition: transform 0.3s;
     }
 
-        .smallWindow .Reveal.collapse{
+        .smallWindow .Reveal.collapse {
             transform: translateY(0px)
         }
 
@@ -73,26 +74,10 @@
             border-top: 1px solid var(--normal3);
         }
 
-            .smallWindow .Reveal .Reveal-bottom .item {
-                margin-left: 20px;
-                margin-right: 20px;
-            }
-
-@media (min-width: 550px) {
+@media (max-width: 900px) {
     .smallWindow {
-        padding-left: 8px;
-        padding-right: 8px;
         width: 50%;
+        margin: auto;
+        max-width: 300px;
     }
 }
-
-@media (min-width: 1000px) {
-    .smallWindow {
-        padding-left: 8px;
-        padding-right: 8px;
-        width: 33.33333%;
-        max-width: 500px;
-    }
-}
-
-

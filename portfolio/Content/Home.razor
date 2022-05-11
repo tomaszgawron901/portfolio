@@ -1,9 +1,8 @@
-﻿@inject IJSRuntime JsRuntime
+﻿@using portfolio.Components
 @inherits Page
 
 <div class="page" @ref="self">
-    <div class="top-leftContainer" @ref="backgroundContainer"></div>
-    <div class="page-content" style="position: relative;">
+    <div class="page-content">
         <div class="side-full">
             <h1>Hello, I'm Tomek.</h1>
             <h2>full-stack application developer.</h2>
@@ -11,42 +10,3 @@
         </div>
     </div>
 </div>
-
-@code {
-    private ElementReference backgroundContainer;
-    private JsRuntimeObjectRef backgroundApp;
-
-    protected override void OnParametersSet()
-    {
-        Icon = "oi oi-home";
-        Label = "Home";
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            backgroundApp = await JsRuntime.InvokeAsync<JsRuntimeObjectRef>("appendBackgroundApp", backgroundContainer);
-            backgroundApp.JsRuntime = JsRuntime;
-        }
-    }
-
-    private bool activated { get; set; } = true;
-
-    public async override void Activate()
-    {
-        if(activated) { return; }
-        await JsRuntime.InvokeVoidAsync("startBackground", backgroundApp);
-        activated = true;
-    }
-
-    public async override void Deactivate()
-    {
-        if (activated)
-        {
-            await JsRuntime.InvokeVoidAsync("stopBackground", backgroundApp);
-            activated = false;
-        }
-    }
-
-}

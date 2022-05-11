@@ -135,8 +135,6 @@ class Circle {
     }
 }
 
-
-const PI2 = Math.PI * 2;
 class CircleGroup {
     constructor(firstCircle, color, maxRadius) {
         this.circles = [firstCircle];
@@ -184,13 +182,16 @@ function randn_bm() {
     }
     return rand / 3;
 }
-class BackgroundApp {
+export function createBackgroundApp(element) {
+    return new BackgroundApp(element);
+}
+export class BackgroundApp {
     constructor(element) {
         document.onvisibilitychange = () => { this.onVisibilityChange(); };
         window.onresize = () => { this.onWindowsResize(); };
         this.intervals = new Array();
         this.element = element;
-        this.canvas = new Canvas(window.innerWidth, window.innerHeight, 2, 50);
+        this.canvas = new Canvas(this.element.clientWidth, this.element.clientHeight, 2, 50);
         this.element.appendChild(this.canvas.element);
         this.start();
     }
@@ -212,7 +213,7 @@ class BackgroundApp {
         }
         this.canvas.stopDrawing();
     }
-    onVisibilityChange() {
+    onVisibilityChange(args) {
         if (document.visibilityState == "visible") {
             this.start();
         }
@@ -222,7 +223,7 @@ class BackgroundApp {
     }
     onWindowsResize() {
         this.stop();
-        this.canvas.resizeCanvas(window.innerWidth, window.innerHeight);
+        this.canvas.resizeCanvas(this.element.clientWidth, this.element.clientHeight);
         this.start();
     }
 }

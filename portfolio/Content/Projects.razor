@@ -1,109 +1,33 @@
-﻿
-<Page Label="Projects" Icon="oi oi-briefcase">
-    <div class="side-full row">
-        <ProjectCard Title="Chess Online" Web="https://chesswebapplication.azurewebsites.net" Git="https://github.com/tomaszgawron901/chess-app-web">
-            <Header>
-                <img src="/data/Chess2.png" />
-            </Header>
-            <Content>
-                Web online chess application.
-            </Content>
-            <Reveal>
-                <ul>
-                    <li>C#</li>
-                    <li>ASP.NET</li>
-                    <li>Blazor</li>
-                    <li>Signal-R</li>
-                    <li>JavaScript</li>
-                </ul>
-            </Reveal>
-        </ProjectCard>
-
-        <ProjectCard Title="Chess" Web="https://chesswebapp20200710224408.azurewebsites.net" Git="https://github.com/tomaszgawron901/Chess">
-            <Header>
-                <img src="/data/Chess1.png" />
-            </Header>
-            <Content>
-                Desktop and Website chess app.
-            </Content>
-            <Reveal>
-                <ul>
-                    <li>WPF</li>
-                    <li>C#</li>
-                    <li>Blazor</li>
-                    <li>JavaScript</li>
-                </ul>
-            </Reveal>
-        </ProjectCard>
-
-        <ProjectCard Title="Minesweeper" Web="https://tomaszgawron901.github.io/Saper/" Git="https://github.com/tomaszgawron901/Saper">
-            <Header>
-                <img src="/data/Saper1.png" />
-            </Header>
-            <Content>
-                Web minesweeper application.
-            </Content>
-            <Reveal>
-                <ul>
-                    <li>TypeScript</li>
-                    <li>HTML</li>
-                    <li>Sass</li>
-                    <li>Node.js</li>
-                </ul>
-            </Reveal>
-        </ProjectCard>
-
-        <ProjectCard Title="NotePocket" Web="https://tomaszgawron901.github.io/JavaScript-programing-projects/Projekt3/index.html" Git="https://github.com/tomaszgawron901/JavaScript-programing-projects">
-            <Header>
-                <img src="/data/NotePocket1.png" />
-            </Header>
-            <Content>
-                Web application for creating, editing and storing notes.
-            </Content>
-            <Reveal>
-                <ul>
-                    <li>JavaScript</li>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                </ul>
-            </Reveal>
-        </ProjectCard>
-
-        <ProjectCard Title="ToDo Application" Git="https://github.com/tomaszgawron901/ToDoApp">
-            <Header>
-                <img src="/data/ToDoApp3.png" />
-            </Header>
-            <Content>
-                Mobile application for creating, editing and storing notes.
-            </Content>
-            <Reveal>
-                <ul>
-                    <li>TypeScript</li>
-                    <li>React Native</li>
-                    <li>Redux</li>
-                    <li>Expo</li>
-                </ul>
-            </Reveal>
-        </ProjectCard>
-
-        <ProjectCard Title="Image Editor" Web="https://tomaszgawron901.github.io/JavaScript-programing-projects/Projekt2/index.html" Git="https://github.com/tomaszgawron901/JavaScript-programing-projects">
-            <Header>
-                <img src="/data/ImageEditor2.png" />
-            </Header>
-            <Content>
-                Web application for editing images.
-            </Content>
-            <Reveal>
-                <ul>
-                    <li>JavaScript</li>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                </ul>
-            </Reveal>
-        </ProjectCard>
+﻿<Page Label="Projects" Icon="oi oi-briefcase">
+    <div class="page">
+        <div class="page-content">
+            <h1 id="projects-title">
+                @Title
+            </h1>
+            <div id="projects-list">
+                @foreach(var project in ProjectsList)
+                {
+                    <ProjectCard Title="@project.Title" Web="@project.WebUrl" Git="@project.SourceUrl">
+                        <Header>
+                            <img src="@project.ImageSrc" class="project-card-img" />
+                        </Header>
+                        <Content>
+                            @project.Description
+                        </Content>
+                        <Reveal>
+                            <ul>
+                                @if (project.Tools is not null)
+                                {
+                                    @foreach (var tool in project.Tools)
+                                    {
+                                        <li>@tool</li>
+                                    }
+                                }
+                            </ul>
+                        </Reveal>
+                    </ProjectCard>
+                }
+            </div>
+        </div>
     </div>
 </Page>
-
-@code {
-
-}

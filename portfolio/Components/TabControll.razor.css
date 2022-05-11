@@ -1,0 +1,47 @@
+﻿#main-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+#main-scroll {
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.nav-item {
+    margin-top: 30px;
+    font-size: 1.2rem;
+    display: block;
+    color: var(--normal2);
+    cursor: pointer;
+    transition: color 0.5s;
+}
+
+.nav-item.active {
+    color: var(--active1);
+}
+
+@media (min-width: 768px) {
+    .topbar .topbar-list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 40px;
+        background-color: var(--transparent1);
+    }
+
+    .topbar .nav-item {
+        margin-top: 0px;
+        margin-left: 40px;
+    }
+
+    .topbar .nav-item .oi-x {
+        display: none;
+    }
+}

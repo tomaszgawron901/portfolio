@@ -1,0 +1,44 @@
+﻿#toolset-title {
+    background: rgb(30,162,163);
+    background: linear-gradient(90deg, rgba(30,162,163,1) 0%, rgba(36,186,94,1) 100%);
+    text-align: center;
+    margin: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 60px;
+    padding-right: 60px;
+    clip-path: polygon(0% 0%, 100% 0%, calc(100% - 20px) 50%, 100% 100%, 0 100%, 20px 50%);
+}
+
+.page {
+    justify-content: center;
+}
+
+.page-content {
+    padding: 10px;
+    flex-direction: column;
+}
+
+.skill-container {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+.skill-column {
+    box-sizing: border-box;
+    width: 50%;
+    padding: 10px;
+}
+
+@media (max-width: 850px) {
+    .skill-column {
+        width: 100%;
+    }
+}
+
+.skill-header {
+}
