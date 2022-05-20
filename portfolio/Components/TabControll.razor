@@ -3,18 +3,20 @@
 <div id="main-container">
     <Background @ref="Background"></Background>
     <div @oncustomscroll="Scrolled" id="main-scroll">
-        <CascadingValue Value="this">
-            <TopNavigator @ref="navigation">
-                @foreach (Page page in Pages)
-                {
-                    <div class="nav-item @(ActivePage == page ? "active" : "")" @onclick="() => { navigation.CloseNavMenu(); page.ScrollTo(); }">
-                        @(page.Label)
-                    </div>
-                }
-            </TopNavigator>
-            @MainPage
-            @ChildContent
-        </CascadingValue>
+        <div @oncustomscroll:stopPropagation>
+            <CascadingValue Value="this">
+                <TopNavigator @ref="navigation">
+                    @foreach (Page page in Pages)
+                    {
+                        <div class="nav-item @(ActivePage == page ? "active" : "")" @onclick="() => { navigation.CloseNavMenu(); page.ScrollTo(); }">
+                            @(page.Label)
+                        </div>
+                    }
+                </TopNavigator>
+                @MainPage
+                @ChildContent
+            </CascadingValue>
+        </div>
     </div>
 </div>
 
