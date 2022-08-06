@@ -19,3 +19,35 @@
     height: auto;
     border-radius: 10%;
 }
+
+#contact-title {
+    background: rgb(107,122,255);
+    background: linear-gradient(90deg, rgba(107,122,255,1) 0%, rgba(75,170,200,1) 100%);
+    text-align: center;
+    margin: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 60px;
+    padding-right: 60px;
+    clip-path: polygon(0% 0%, 100% 0%, calc(100% - 20px) 50%, 100% 100%, 0 100%, 20px 50%);
+}
+
+.link-box {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    color: var(--normal1);
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-decoration: none;
+    box-sizing: border-box;
+    width: max-content;
+}
+
+    .link-box h4 {
+        margin-left: 10px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }

@@ -14,5 +14,6 @@ namespace portfolio.Content
         {}
 
         private string Title = "About me";
+        private string ContactTitle = "Contact";
     }
 }
