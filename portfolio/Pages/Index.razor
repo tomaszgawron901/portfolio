@@ -1,14 +1,13 @@
 ﻿@page "/"
 
-<TabControll>
+<TabControll @ref="TabControll">
     <MainPage>
-        <Home></Home>
+        <Home OnLearnMoreClicked="@LearnMoreClicked"></Home>
     </MainPage>
     <ChildContent>
         <About></About>
         <Toolset></Toolset>
         <Projects></Projects>
-        <Contact></Contact>
     </ChildContent>
 </TabControll>
 

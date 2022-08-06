@@ -1,12 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Rendering;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-
-namespace portfolio.Content
+﻿namespace portfolio.Content
 {
     public partial class About
     {
@@ -14,5 +6,6 @@ namespace portfolio.Content
         {}
 
         private string Title = "About me";
+        private string ContactTitle = "Contact";
     }
 }

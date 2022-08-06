@@ -2,6 +2,6 @@
 
 public class ToolPercentage
 {
-    public string Name { get; set; }
-    public int Percentage { get; set; }
+    public string Name { get; init; } = ""!;
+    public int Percentage { get; set; } = 0!;
 }

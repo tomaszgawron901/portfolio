@@ -1,4 +1,5 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@import url('commonPageStyles.css');
 
 :root {
     --background: rgb(0, 0, 0);
@@ -10,8 +11,6 @@
     --normal2: rgb(199, 199, 199);
     --normal3: rgb(45, 45, 45);
     --border_black: rgb(43, 43, 43);
-    --min-page-content-width: 300px;
-    --max-page-content-width: 1100px;
 }
 
 .centered-container {
@@ -36,9 +35,6 @@
     left: -50px;
     color: var(--active1);
 }
-
-
-
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -81,49 +77,15 @@ app {
     cursor: pointer;
 }
 
-.pageHeader{
-    font-family: Consolas;
-    text-decoration: underline;
-    font-size: 40px;
-    margin-top: 20px;
-    margin-bottom: 70px;
-}
-
-
 .row {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
 }
 
-.page-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
-    min-width: var(--min-page-content-width);
-    max-width: var(--max-page-content-width);
-}
-
 .photo {
     display: flex;
     justify-content: center;
-}
-
-.side-left {
-    width: 100%;
-}
-
-
-.side-right {
-    width: 100%;
-}
-
-
-.side-full {
-    width: 100%;
 }
 
 .tooltip {
@@ -175,74 +137,7 @@ app {
         top: 0.5rem;
     }
 
-@media (max-width: 767.98px) {
-    .side-left {
-        padding-bottom: 20px;
-    }
-        .side-left.text {
-        
-            border-bottom: 1px solid var(--normal1);
-        }
-
-    .side-right {
-        padding-top: 20px;
-    }
-        .side-right.text {
-            border-top: 1px solid var(--normal1);
-        }
-}
-
 .smallWindow .Reveal .Reveal-bottom .item {
     margin-left: 10px;
     margin-right: 10px;
-}
-
-.page {
-    min-height: 70vh;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    box-sizing: border-box;
-    padding-top: 60px;
-    padding-bottom: 20vh;
-    padding-left: 20px;
-    padding-right: 20px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-}
-
-@media (min-width: 768px) {
-    .page {
-        padding-left: 100px;
-        padding-right: 100px;
-    }
-}
-
-
-@media (min-width: 768px) {
-
-    .page-content {
-        flex-direction: row;
-    }
-
-    .side-left {
-        padding-right: 20px;
-        width: 60%;
-    }
-        .side-left.text {
-            border-right: 1px solid var(--normal1);
-        }
-
-    .side-right {
-        padding-left: 20px;
-        width: 40%;
-    }
-        .side-right.text {
-            border-left: 1px solid var(--normal1);
-        }
-
-    .side-full {
-        width: 100%;
-    }
 }

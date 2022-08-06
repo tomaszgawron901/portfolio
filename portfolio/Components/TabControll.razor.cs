@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Rendering;
 using portfolio.Content;
 using portfolio.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 
@@ -12,22 +9,26 @@ namespace portfolio.Components;
 
 public partial class TabControll
 {
-    [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? MainPage { get; set; }
 
-    [Parameter]
-    public RenderFragment MainPage { get; set; }
+    [Parameter] public EventCallback<ScrollEventArgs> OnScroll { get; set; }
+    
 
     protected List<Page> Pages = new List<Page>();
-    public Page ActivePage { get; set; }
+    public Page? ActivePage { get; set; }
 
-    private TopNavigator navigation;
+    private TopNavigator? Navigation;
 
     private Background? Background;
 
     private async Task Scrolled(ScrollEventArgs e)
     {
-        if ( e?.ScrollTop is not null && Background is not null)
+        if (e is null) return;
+
+        await OnScroll.InvokeAsync(e);
+        
+        if ( e.ScrollTop is not null && Background is not null)
         {
             Background.ScrollTop((int)e.ScrollTop/2);
         }
@@ -52,8 +53,9 @@ public partial class TabControll
         StateHasChanged();
     }
 
-    public void ScrollTo(int index)
+    public Task ScrollTo(int index)
     {
-        Pages[index].ScrollTo();
+        if (index > Pages.Count || index < 0) return Task.CompletedTask;
+        return Pages[index].ScrollTo();
     }
 }

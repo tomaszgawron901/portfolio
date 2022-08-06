@@ -6,38 +6,39 @@ using System.Threading.Tasks;
 
 namespace portfolio.Components;
 
-public partial class Page
+public partial class Page: ComponentBase
 {
     [Inject]
-    JsPageInteractionModuleService JsPageInteractionModuleService { get; set; }
+    JsPageInteractionModuleService? JsPageInteractionModuleService { get; set; }
     
     [Parameter]
-    public string Icon { get; set; }
+    public string? Icon { get; set; }
 
     [Parameter]
-    public string Label { get; set; }
+    public string? Label { get; set; }
 
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public RenderFragment? ChildContent { get; set; }
 
     [CascadingParameter]
-    public TabControll Parent { get; set; }
+    public TabControll? Parent { get; set; }
 
     public ElementReference self;
-
 
     public virtual void Activate() { }
 
     public virtual void Deactivate() { }
 
 
-    public async void ScrollTo()
+    public Task ScrollTo()
     {
-        await JsPageInteractionModuleService.ScrollToElement(self);
+        if (JsPageInteractionModuleService is null) return Task.CompletedTask;
+        return JsPageInteractionModuleService.ScrollToElement(self).AsTask();
     }
 
     public async Task<bool> IsInCenter()
     {
+        if (JsPageInteractionModuleService is null) return false;
         return await JsPageInteractionModuleService.IsInCenter(self);
     }
 

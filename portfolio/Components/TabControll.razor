@@ -5,10 +5,10 @@
     <div @oncustomscroll="Scrolled" id="main-scroll">
         <div @oncustomscroll:stopPropagation>
             <CascadingValue Value="this">
-                <TopNavigator @ref="navigation">
+                <TopNavigator @ref="Navigation">
                     @foreach (Page page in Pages)
                     {
-                        <div class="nav-item @(ActivePage == page ? "active" : "")" @onclick="() => { navigation.CloseNavMenu(); page.ScrollTo(); }">
+                        <div class="nav-item @(ActivePage == page ? "active" : "")" @onclick="async () => { Navigation?.CloseNavMenu(); await page.ScrollTo(); }">
                             @(page.Label)
                         </div>
                     }
