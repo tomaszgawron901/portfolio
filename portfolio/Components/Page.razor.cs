@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace portfolio.Components;
 
-public partial class Page
+public partial class Page: ComponentBase
 {
     [Inject]
     JsPageInteractionModuleService? JsPageInteractionModuleService { get; set; }
