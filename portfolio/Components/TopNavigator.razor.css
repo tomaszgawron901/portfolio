@@ -5,11 +5,11 @@
     height: 0px;
 }
 
-.topbar .oi {
-    width: 2rem;
-    font-size: 1.1rem;
-    vertical-align: text-top;
-}
+    .topbar .oi {
+        width: 2rem;
+        font-size: 1.1rem;
+        vertical-align: text-top;
+    }
 
 .topbar .nav-item.close-item {
     margin-bottom: 20px;
@@ -55,6 +55,8 @@
         height: 100vh;
         background-color: var(--background);
         width: 100%;
+        position: fixed;
+        top: 0px;
     }
 }
 
