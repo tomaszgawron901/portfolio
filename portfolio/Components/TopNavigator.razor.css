@@ -18,8 +18,8 @@
 
 .topbar .toggler {
     top: 10px;
-    left: 10px;
-    position: relative;
+    right: 10px;
+    position: absolute;
     display: flex;
     align-items: center;
     display: none;
@@ -27,18 +27,19 @@
     cursor: pointer;
 }
 
-.topbar .toggler button {
-    width: 55px;
-    height: 55px;
-    background-color: var(--normal3);
-    color: var(--active1);
-    border-radius: 5px;
-    border: none;
-}
+    .topbar .toggler button {
+        width: 55px;
+        height: 55px;
+        background-color: var(--transparent1);
+        color: var(--active1);
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
 
-.topbar.collapse .toggler {
-    display: block;
-}
+    .topbar.collapse .toggler {
+        display: block;
+    }
 
 
 

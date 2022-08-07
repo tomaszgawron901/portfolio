@@ -1,23 +1,17 @@
 ﻿<div class="topbar @(CollapseNavMenu ? "collapse" : "")">
-
     <div class="toggler">
         <button @onclick="ToggleNavMenu">
             <div class="oi oi-menu"></div>
         </button>
     </div>
-
     <div class="topbar-list-container @(SolidBackground ? "solid" : "")">
-
         <div class="topbar-list">
             @ChildContent
         </div>
-        
         <div class="topbar-list">
             <div class="nav-item close-item" @onclick="CloseNavMenu">
                 <div class="oi oi-x" aria-hidden="true"></div>
             </div>
         </div>
-        
     </div>
-    
 </div>
