@@ -5,26 +5,21 @@
     height: 0px;
 }
 
-.topbar .topbar-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    background-color: var(--background);
-    border-bottom: 1px solid var(--border_black);
-}
+    .topbar .oi {
+        width: 2rem;
+        font-size: 1.1rem;
+        vertical-align: text-top;
+    }
 
-.topbar .oi {
-    width: 2rem;
-    font-size: 1.1rem;
-    vertical-align: text-top;
+.topbar .nav-item.close-item {
+    margin-bottom: 20px;
+    cursor: pointer;
 }
-
 
 .topbar .toggler {
     top: 10px;
-    left: 10px;
-    position: relative;
+    right: 10px;
+    position: absolute;
     display: flex;
     align-items: center;
     display: none;
@@ -32,35 +27,54 @@
     cursor: pointer;
 }
 
-.topbar .toggler button {
-    width: 55px;
-    height: 55px;
-    background-color: var(--normal3);
-    color: var(--active1);
-    border-radius: 5px;
-    border: none;
-}
+    .topbar .toggler button {
+        width: 55px;
+        height: 55px;
+        background-color: var(--transparent1);
+        color: var(--active1);
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
 
-.topbar.collapse .topbar-list {
-    display: none;
-}
-
-.topbar.collapse .toggler {
-    display: block;
-}
+    .topbar.collapse .toggler {
+        display: block;
+    }
 
 
 
 @media (max-width: 767.98px) {
+    .topbar.collapse .topbar-list-container {
+        display: none;
+    }
+    
+    .topbar .topbar-list-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        height: 100vh;
+        background-color: var(--background);
+        width: 100%;
+        position: fixed;
+        top: 0px;
+    }
 }
 
 @media (min-width: 768px) {
-    .topbar .topbar-list {
+    .topbar .topbar-list-container {
         display: flex;
         flex-direction: row;
         align-items: center;
         height: 40px;
+        background-color: transparent;
+        border-bottom: 1px solid transparent;
+        transition: background-color 0.2s linear;
     }
+        .topbar .topbar-list-container.solid {
+            background-color: var(--background-lighter);
+            border-bottom: 1px solid var(--border_black);
+        }
 
     .topbar .nav-item {
         margin-top: 0px;
@@ -75,11 +89,17 @@
         display: none;
     }
 
-    .topbar.collapse .topbar-list {
+    .topbar.collapse .topbar-list-container {
         display: flex;
     }
 
     .topbar.collapse .toggler {
         display: none;
     }
+}
+
+.topbar .topbar-list {
+    display: inherit;
+    flex-direction: inherit;
+    align-items: inherit;
 }

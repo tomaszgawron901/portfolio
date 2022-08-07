@@ -3,7 +3,8 @@
 
 :root {
     --background: rgb(0, 0, 0);
-    --transparent1: rgba(30, 30, 30, 0.95);
+    --background-lighter: rgb(10, 10, 10);
+    --transparent1: rgba(20, 20, 20, 0.95);
     --transparent2: rgba(255, 255, 255, 0.1);
     --active1: rgb(255, 180, 0);
     --active2: rgb(255, 148, 0);

@@ -28,9 +28,10 @@ public partial class TabControll
 
         await OnScroll.InvokeAsync(e);
         
-        if ( e.ScrollTop is not null && Background is not null)
+        if ( e.ScrollTop is not null)
         {
-            Background.ScrollTop((int)e.ScrollTop/2);
+            Background?.ScrollTop((int)e.ScrollTop / 2);
+            Navigation?.SetBackgroundTransparency(e.ScrollTop == 0);
         }
 
         foreach (Page page in Pages)
