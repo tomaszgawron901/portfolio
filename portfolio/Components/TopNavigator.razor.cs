@@ -7,18 +7,23 @@ namespace portfolio.Components
     {
         [Parameter] public RenderFragment? ChildContent { get; set; }
 
-        private bool collapseNavMenu = true;
+        private bool SolidBackground { get; set; } = false;
 
-        private string NavMenuCssClass => collapseNavMenu ? "collapse" : "";
+        private bool CollapseNavMenu { get; set; } = true;
 
         public void ToggleNavMenu()
         {
-            collapseNavMenu = !collapseNavMenu;
+            CollapseNavMenu = !CollapseNavMenu;
         }
 
         public void CloseNavMenu()
         {
-            collapseNavMenu = true;
+            CollapseNavMenu = true;
+        }
+
+        public void SetBackgroundTransparency(bool transparent=true)
+        {
+            SolidBackground = !transparent;
         }
     }
 }

@@ -11,7 +11,6 @@
     align-items: center;
     height: 100vh;
     background-color: var(--background);
-    border-bottom: 1px solid var(--border_black);
 }
 
 .topbar .oi {
@@ -60,7 +59,15 @@
         flex-direction: row;
         align-items: center;
         height: 40px;
+        background-color: transparent;
+        border-bottom: 1px solid transparent;
+        transition: background-color 0.2s linear;
     }
+        .topbar .topbar-list.solid {
+            background-color: var(--background-lighter);
+            border-bottom: 1px solid var(--border_black);
+            
+        }
 
     .topbar .nav-item {
         margin-top: 0px;
