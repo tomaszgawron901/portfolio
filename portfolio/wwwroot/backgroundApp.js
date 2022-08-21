@@ -3,24 +3,25 @@ function distance(x1, y1, x2, y2) {
     return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 }
 class Canvas {
-    constructor(width, height, step = 1, wavelenght = 100) {
-        this.baseLineWidth = 5;
+    constructor(width, height, step = 1) {
+        this.baseLineWidth = 3;
         this.element = document.createElement('CANVAS');
         this.element.style.width = '100%';
         this.element.style.height = '100%';
+        this.ctx = this.element.getContext('2d', { alpha: false });
+        this.ctx.webkitImageSmoothingEnabled = false;
+        this.ctx.mozImageSmoothingEnabled = false;
+        this.ctx.imageSmoothingEnabled = false;
         this.setSize(width, height);
-        this.ctx = this.element.getContext('2d');
-        this.ctx.lineWidth = this.lineWidth;
         this.colors = new ListRoulette("#00ff04", "#00ff80", "#00eaff", "#00a6ff", "#0026ff", "#7300ff", "#ff00f2", "#ff0062", "#ff0000", "#ff8c00", "#fffb00", "#a6ff00");
         this.groups = new Array();
         this.step = step;
-        this.wavelenght = wavelenght;
     }
     resizeCanvas(width, height) {
-        this.stopDrawing();
         this.setSize(width, height);
-        this.groups = new Array();
-        this.startDrawing();
+        this.groups.forEach(group => {
+            group.maxRadius = this.calculateDistanceToFurthestCorner(group.largesCircle.x, group.largesCircle.y);
+        });
     }
     setSize(width, height) {
         const pixelSize = width * height;
@@ -29,23 +30,36 @@ class Canvas {
             const proportion_sqrt = Math.sqrt(proportion);
             this.width = Math.floor(width * proportion_sqrt);
             this.height = Math.floor(height * proportion_sqrt);
-            this.lineWidth = this.baseLineWidth * proportion_sqrt;
+            this.lineWidth = Math.ceil(this.baseLineWidth * proportion_sqrt);
         }
         else {
             this.width = width;
             this.height = height;
             this.lineWidth = this.baseLineWidth;
         }
+        this.ctx.lineWidth = this.lineWidth;
         this.halfWidth = Math.floor(this.width / 2);
         this.halfHeight = Math.floor(this.height / 2);
         this.diagonal = Math.sqrt(Math.pow(this.width, 2) + Math.pow(this.height, 2));
         this.element.width = this.width;
         this.element.height = this.height;
     }
+    calculateNextState() {
+        this.groups = this.groups.filter(group => {
+            return group.maxRadius > group.largesCircle.radius + this.step;
+        });
+        this.groups.forEach(group => {
+            group.circles.forEach(circle => {
+                circle.radius += this.step;
+            });
+        });
+    }
     clearCanvas() {
         this.ctx.clearRect(0, 0, this.width, this.height);
     }
     drawFrame() {
+        this.ctx.lineWidth = this.lineWidth;
+        this.calculateNextState();
         this.groups.forEach(group => {
             group.draw(this.ctx);
         });
@@ -79,30 +93,6 @@ class Canvas {
             else {
                 return distance(x, y, 0, 0);
             }
-        }
-    }
-    startDrawing() {
-        this.ctx.lineWidth = this.lineWidth;
-        if (this.interval) {
-            return;
-        }
-        this.interval = setInterval(() => {
-            this.groups = this.groups.filter(group => {
-                return group.maxRadius > group.largesCircle.radius + this.step;
-            });
-            this.groups.forEach(group => {
-                group.circles.forEach(circle => {
-                    circle.radius += this.step;
-                });
-            });
-            this.clearCanvas();
-            this.drawFrame();
-        }, this.wavelenght);
-    }
-    stopDrawing() {
-        if (this.interval) {
-            clearInterval(this.interval);
-            this.interval = null;
         }
     }
 }
@@ -164,16 +154,37 @@ class CircleGroup {
     }
 }
 
-class ListRoulette extends Array {
+class ListRoulette{
     constructor(...items) {
-        super(...items);
+        this.items = items;
+        this.lenght = items.length;
+        this.current = -1;
     }
     get() {
-        const tmp = this.shift();
-        this.push(tmp);
-        return tmp;
+        this.current++;
+        if (this.current >= this.lenght) {
+            this.current = 0;
+        }
+        return this.items[this.current];
     }
 }
+
+class ModuloCounter {
+    constructor(modulo) {
+        this.modulo = modulo;
+        this.current = 0;
+    }
+    nextDidLoop() {
+        this.current++;
+        if (this.current >= this.modulo) {
+            this.current = 0;
+            return true;
+        }
+        return false;
+    }
+}
+
+
 
 function randn_bm() {
     var rand = 0;
@@ -187,43 +198,54 @@ export function createBackgroundApp(element) {
 }
 export class BackgroundApp {
     constructor(element) {
-        document.onvisibilitychange = () => { this.onVisibilityChange(); };
-        window.onresize = () => { this.onWindowsResize(); };
-        this.intervals = new Array();
+        window.addEventListener('resize', () => { this.onWindowsResize(); });
+        this.moduloCounters = this.getDefaultModuloCounters();
         this.element = element;
         this.canvas = new Canvas(this.element.clientWidth, this.element.clientHeight, 2, 50);
         this.element.appendChild(this.canvas.element);
+        this.isRunning = false;
         this.start();
+    }
+    getDefaultModuloCounters() {
+        return [
+            new ModuloCounter(41),
+            new ModuloCounter(199),
+            new ModuloCounter(257),
+        ];
     }
     start() {
-        this.intervals.push(setInterval(() => {
-            this.canvas.addCircle(Math.floor((randn_bm() * this.canvas.width)), Math.floor((randn_bm() * this.canvas.height)));
-        }, 1333));
-        this.intervals.push(setInterval(() => {
-            this.canvas.addCircle(Math.floor((randn_bm() * this.canvas.width)), Math.floor((randn_bm() * this.canvas.height)));
-        }, 8888));
-        this.intervals.push(setInterval(() => {
-            this.canvas.addCircle(Math.floor((randn_bm() * this.canvas.width)), Math.floor((randn_bm() * this.canvas.height)));
-        }, 6666));
-        this.canvas.startDrawing();
+        if (this.isRunning) { return; }
+        this.isRunning = true;
+
+        this.previousTimestam = 0;
+        window.requestAnimationFrame((stmp) => { this.step(stmp); });
     }
     stop() {
-        while (this.intervals.length > 0) {
-            clearInterval(this.intervals.pop());
-        }
-        this.canvas.stopDrawing();
+        this.isRunning = false;
     }
-    onVisibilityChange(args) {
-        if (document.visibilityState == "visible") {
-            this.start();
+    step(timestamp) {
+        if (!this.isRunning) { return; }
+
+        const elapse = timestamp - this.previousTimestam;
+        if (elapse > 33) {
+
+            this.moduloCounters.forEach(
+                mc => {
+                    if (mc.nextDidLoop()) {
+                        this.addNewRandomCircle();
+                    }
+                }
+            );
+            
+            this.canvas.drawFrame();
+            this.previousTimestam = timestamp;
         }
-        else {
-            this.stop();
-        }
+        window.requestAnimationFrame((stmp) => { this.step(stmp); });
+    }
+    addNewRandomCircle() {
+        this.canvas.addCircle(Math.floor((randn_bm() * this.canvas.width)), Math.floor((randn_bm() * this.canvas.height)));
     }
     onWindowsResize() {
-        this.stop();
         this.canvas.resizeCanvas(this.element.clientWidth, this.element.clientHeight);
-        this.start();
     }
 }
