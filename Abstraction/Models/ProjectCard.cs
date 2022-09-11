@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace portfolio.Models;
+﻿namespace Abstraction.Models;
 
 public class ProjectCard
 {

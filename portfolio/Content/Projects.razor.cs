@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using portfolio.Models;
+﻿using Abstraction.Models;
+using Microsoft.AspNetCore.Components;
 using portfolio.Services;
 using System.Collections.Generic;
 using System.Linq;

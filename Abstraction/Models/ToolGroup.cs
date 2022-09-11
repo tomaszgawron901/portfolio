@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace portfolio.Models;
+namespace Abstraction.Models;
 
 public  class ToolGroup
 {

@@ -1,4 +1,4 @@
-﻿namespace portfolio.Models;
+﻿namespace Abstraction.Models;
 
 public class ToolPercentage
 {
